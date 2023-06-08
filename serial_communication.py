@@ -9,7 +9,17 @@ class SerialCommunication:
         :baudrate: baudrate such as 9600 ar 115200
         :timeout: read timeout value in seconds
         """
-        self.ser = serial.Serial(port, baudrate=baudrate, timeout=timeout)
+        for i in range(20):
+            try:
+                self.ser = serial.Serial(port, baudrate=baudrate, timeout=timeout)
+                break
+            except ValueError as e:
+                print("Parameters are out of range: " + str(e))
+                exit()
+            except Exception as e:
+                print("The device cannot be found or can not be configured: " + str(e))
+                print("Researching...")
+                time.sleep(5)
 
     def __send_command(self, command):
         """Sends command to device.
@@ -82,13 +92,22 @@ class SerialCommunication:
             
         return response[1]
     
-    def open_port(self):
-        """Opens the port, if it is not already open."""
-        try:
-            if self.ser.closed:
-                self.ser.open()
-        except Exception as e:
-            print("Error while openning the port: " + str(e))
+    def open_port(self, repetition_times=20, waiting_seconds=5):
+        """Opens the port, if it is not already open.
+        :repetition_times: number of attemps to open the connection
+        in case of failure
+        :waiting_seconds: number of seconds to wait between attempts
+        to open the connection
+        """
+        for i in range(repetition_times):
+            try:
+                if self.ser.closed:
+                    self.ser.open()
+                break
+            except Exception as e:
+                print("Error while openning the port: " + str(e))
+                print("Reopenning...")
+                time.sleep(waiting_seconds)
 
     def close_port(self):
         """Closes the port, if it is not already closed."""
