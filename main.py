@@ -8,7 +8,12 @@ from modules import preparation
 from modules.at_commands_container import AtCommandsContainer
 from modules.serial_communication import SerialCommunication
 
-def main(flag_device_name, flags_port, flags_possible_port):
+def main(flags):
+    # Extract values from the flags
+    flag_device_name = flags.name.upper()
+    flags_port = flags.port
+    flags_possible_port = flags.possibleport
+
     # Prepare for the test
     preparation.kill_modem_manager()
 
@@ -37,8 +42,7 @@ def main(flag_device_name, flags_port, flags_possible_port):
 
 if __name__ == "__main__":
     flags = flags_handling.get_flags()
-
-    main(flags.name.upper(), flags.port, flags.possibleport)
+    main(flags)
 
 
     
