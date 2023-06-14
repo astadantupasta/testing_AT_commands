@@ -7,7 +7,7 @@ from modules import print_to_terminal
 from at_commands_container import AtCommandsContainer
 from serial_communication import SerialCommunication
 
-def main(flag_device_name, flags_port):
+def main(flag_device_name, flags_port, flags_possible_port):
     # Read data from a file and append to a list of AtCommands objects
     file_data = read_json.read_data_from_json("at_commands.json", flag_device_name)
 
@@ -15,7 +15,7 @@ def main(flag_device_name, flags_port):
     at_commands = AtCommandsContainer(file_data)
 
     # Initiate SerialCommunication object
-    serial = SerialCommunication(flags_port)
+    serial = SerialCommunication(flags_port, flags_possible_port)
     serial.open_port()
 
     # Send AT commands to the device
@@ -34,7 +34,7 @@ def main(flag_device_name, flags_port):
 if __name__ == "__main__":
     flags = flags_handling.get_flags()
 
-    main(flags.name.upper(), flags.port)
+    main(flags.name.upper(), flags.port, flags.possibleport)
 
 
     

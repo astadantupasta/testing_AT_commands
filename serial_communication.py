@@ -2,16 +2,46 @@ import serial
 import time
 
 class SerialCommunication:
-    def __init__(self, port, baudrate=9600, timeout=.1):
+    def __init__(self, port, possible_port, baudrate=9600, timeout=.1):
         """Initiation of the object which establishes a serial communication.
 
         :port: device name, port used for serial communication
+        :possible_port: port that may be true after connection interruption
         :baudrate: baudrate such as 9600 ar 115200
         :timeout: read timeout value in seconds
         """
-        for i in range(20):
+        self.port = port
+        self.possible_port = possible_port
+        self.baudrate = 9600
+        self.timeout = timeout
+
+        self.__initiate_with_different_ports(self.port, self.possible_port, 20)
+
+    def __initiate_with_different_ports(self, port, possible_port, repetition_times):
+        """Invites __initiate() method for both possible ports,
+        if connection with one of the ports is not successful.
+        :port: port
+        :possible_port: possible port after connection interruption
+        :repetition_times: number of attempts to establish connection until
+        succession
+        """
+        number_of_attempts = self.__initiate(port, repetition_times)
+
+        if number_of_attempts > (repetition_times-2):
+            self.__initiate(possible_port, repetition_times)
+                    
+
+    def __initiate(self, port, repetition_times):
+        """Private method used for connection reinitiation after connection loss.
+        :port: port to open (can be either the one indicated previously, or a
+        second one)
+        :repetition_times: number of times the connection has to be
+        attempted to establish
+        :return: number of attempts to intiate the connection
+        """
+        for i in range(repetition_times):
             try:
-                self.ser = serial.Serial(port, baudrate=baudrate, timeout=timeout)
+                self.ser = serial.Serial(port, baudrate=self.baudrate, timeout=self.timeout)
                 break
             except ValueError as e:
                 print("Parameters are out of range: " + str(e))
@@ -20,6 +50,9 @@ class SerialCommunication:
                 print("The device cannot be found or can not be configured: " + str(e))
                 print("Researching...")
                 time.sleep(5)
+
+        return i
+
 
     def __send_command(self, command):
         """Sends command to device.
@@ -30,12 +63,17 @@ class SerialCommunication:
         self.ser.write(bytes(command+"\r\n", "ascii"))
         time.sleep(0.2)
         ret=[]
-        while self.ser.in_waiting > 0:
-            msg = self.ser.readline().strip()
-            msg = msg.replace(b'\r', b'')
-            msg = msg.replace(b'\r', b'')
-            if msg != "":
-                ret.append(bytes.decode(msg, 'ascii'))
+        try:
+            while self.ser.in_waiting > 0:
+                msg = self.ser.readline().strip()
+                msg = msg.replace(b'\r', b'')
+                msg = msg.replace(b'\r', b'')
+                if msg != "":
+                    ret.append(bytes.decode(msg, 'ascii'))
+        except OSError as e:
+            print("Error while reading registers occured: " + str(e))
+            print("Reconnecting...")
+            self.__initiate_with_different_ports(self.port, self.possible_port, 20)
         return ret
     
     def send_command_when_expect(self, command, expected_response, repetition_times=5):
@@ -60,7 +98,8 @@ class SerialCommunication:
             except IndexError as e:
                 print("No response received: " + str(e))
                 print(command)
-                print(answer)
+                response = "no response"
+
             count += 1
             if(count > repetition_times):
                 return response    
@@ -85,6 +124,7 @@ class SerialCommunication:
                 response_ok = response[-1]
             except IndexError as e:
                 print("No response received: " + str(e))
+                response = ["no response", "no response"]
             count += 1
 
             if(count > repetition_times):
@@ -103,7 +143,7 @@ class SerialCommunication:
             try:
                 if self.ser.closed:
                     self.ser.open()
-                break
+                    break
             except Exception as e:
                 print("Error while openning the port: " + str(e))
                 print("Reopenning...")
