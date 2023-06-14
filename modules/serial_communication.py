@@ -1,3 +1,4 @@
+from modules import preparation
 import serial
 import time
 
@@ -41,6 +42,7 @@ class SerialCommunication:
         """
         for i in range(repetition_times):
             try:
+                preparation.provide_read_write_permission(port)
                 self.ser = serial.Serial(port, baudrate=self.baudrate, timeout=self.timeout)
                 break
             except ValueError as e:

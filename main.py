@@ -1,13 +1,17 @@
 # Import
-from at_command import AtCommand
+from modules.at_command import AtCommand
 from modules import flags_handling
 from modules import read_json
 from modules import print_to_file
 from modules import print_to_terminal
-from at_commands_container import AtCommandsContainer
-from serial_communication import SerialCommunication
+from modules import preparation
+from modules.at_commands_container import AtCommandsContainer
+from modules.serial_communication import SerialCommunication
 
 def main(flag_device_name, flags_port, flags_possible_port):
+    # Prepare for the test
+    preparation.kill_modem_manager()
+
     # Read data from a file and append to a list of AtCommands objects
     file_data = read_json.read_data_from_json("at_commands.json", flag_device_name)
 

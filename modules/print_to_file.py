@@ -1,9 +1,13 @@
 import csv
 from datetime import datetime
-from at_commands_container import AtCommandsContainer
-from at_command import AtCommand
+from modules.at_commands_container import AtCommandsContainer
+from modules.at_command import AtCommand
 
 def get_test_time():
+    """Get current time in a string form:
+    Y-m-d_HhMmSs.
+    :return: current time
+    """
     return datetime.now().strftime("%Y-%m-%d_%Hh%Mm%Ss")
 
 def get_file_name(device_name, test_time):

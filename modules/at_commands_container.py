@@ -1,5 +1,5 @@
-from at_command import AtCommand
-from serial_communication import SerialCommunication
+from modules.at_command import AtCommand
+from modules.serial_communication import SerialCommunication
 from modules import print_to_terminal
 
 class AtCommandsContainer:
