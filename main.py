@@ -13,6 +13,8 @@ def main(flags):
     flag_device_name = flags.name.upper()
     flags_port = flags.port
     flags_possible_port = flags.possibleport
+    if flags.baudrate: flags_baudrate = flags.baudrate
+    else: flags_baudrate = 9600
 
     # Prepare for the test
     preparation.kill_modem_manager()
@@ -24,7 +26,7 @@ def main(flags):
     at_commands = AtCommandsContainer(file_data)
 
     # Initiate SerialCommunication object
-    serial = SerialCommunication(flags_port, flags_possible_port)
+    serial = SerialCommunication(flags_port, flags_possible_port, flags_baudrate)
     serial.open_port()
 
     # Send AT commands to the device

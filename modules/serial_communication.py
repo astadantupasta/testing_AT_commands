@@ -13,7 +13,7 @@ class SerialCommunication:
         """
         self.port = port
         self.possible_port = possible_port
-        self.baudrate = 9600
+        self.baudrate = baudrate
         self.timeout = timeout
 
         self.__initiate_with_different_ports(self.port, self.possible_port, 20)

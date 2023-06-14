@@ -6,6 +6,7 @@ def get_flags():
     """
     flagsParser = argparse.ArgumentParser()
     required_flags_group = flagsParser.add_argument_group('required named arguments')
+    flagsParser.add_argument("-b", "--baudrate", help="baudrate of the port", required=False)
     required_flags_group.add_argument("-n", "--name", help="name of the device", required=True)
     required_flags_group.add_argument("-p", "--port", help="port", required=True)
     required_flags_group.add_argument("-pp", "--possibleport", help="another possible changed port after connection interuption", required=True)
