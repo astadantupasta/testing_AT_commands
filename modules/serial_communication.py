@@ -1,8 +1,9 @@
-from modules import preparation
+from modules import shell_commands
+from modules.ICommunication import ICommunication
 import serial
 import time
 
-class SerialCommunication:
+class SerialCommunication(ICommunication):
     def __init__(self, port, possible_port, baudrate=9600, timeout=.1):
         """Initiation of the object which establishes a serial communication.
 
@@ -42,7 +43,7 @@ class SerialCommunication:
         """
         for i in range(repetition_times):
             try:
-                preparation.provide_read_write_permission(port)
+                shell_commands.provide_read_write_permission(port)
                 self.ser = serial.Serial(port, baudrate=self.baudrate, timeout=self.timeout)
                 break
             except ValueError as e:

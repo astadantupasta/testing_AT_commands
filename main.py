@@ -4,20 +4,17 @@ from modules import flags_handling
 from modules import read_json
 from modules import print_to_file
 from modules import print_to_terminal
-from modules import preparation
+from modules import shell_commands
 from modules.at_commands_container import AtCommandsContainer
 from modules.serial_communication import SerialCommunication
+import importlib
 
-def main(flags):
-    # Extract values from the flags
-    flag_device_name = flags.name.upper()
-    flags_port = flags.port
-    flags_possible_port = flags.possibleport
-    if flags.baudrate: flags_baudrate = flags.baudrate
-    else: flags_baudrate = 9600
+def main(args):
+    # Extract communication arguments from the flags
+    flag_device_name, first_arg, second_arg, third_arg = flags_handling.get_communication_arguments(args)
 
     # Prepare for the test
-    preparation.kill_modem_manager()
+    shell_commands.kill_modem_manager()
 
     # Read data from a file and append to a list of AtCommands objects
     file_data = read_json.read_data_from_json("at_commands.json", flag_device_name)
@@ -25,15 +22,19 @@ def main(flags):
     # Initiate container of AtCommands
     at_commands = AtCommandsContainer(file_data)
 
-    # Initiate SerialCommunication object
-    serial = SerialCommunication(flags_port, flags_possible_port, flags_baudrate)
-    serial.open_port()
+    # Dynamically import module and class
+    mod = importlib.import_module(f'modules.{at_commands.get_module()}')
+    Communication = getattr(mod, at_commands.get_class())
+
+    # Initiate object for communication
+    comm = Communication(first_arg, second_arg, third_arg)
+    comm.open_port()
 
     # Send AT commands to the device
-    at_commands.set_at_commands_responses(serial)
-    at_commands.set_modem_manufacturer(serial)
-    at_commands.set_modem_model(serial)
-    serial.close_port()
+    at_commands.set_at_commands_responses(comm)
+    at_commands.set_modem_manufacturer(comm)
+    at_commands.set_modem_model(comm)
+    comm.close_port()
 
     # Check if the tests were passed
     at_commands.check_if_tests_are_passed()
@@ -44,6 +45,7 @@ def main(flags):
 
 if __name__ == "__main__":
     flags = flags_handling.get_flags()
+    flags_handling.test_flags(flags)
     main(flags)
 
 

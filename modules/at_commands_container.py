@@ -1,5 +1,5 @@
 from modules.at_command import AtCommand
-from modules.serial_communication import SerialCommunication
+
 from modules import print_to_terminal
 
 class AtCommandsContainer:
@@ -11,6 +11,8 @@ class AtCommandsContainer:
         """
 
         self.at_commands = []
+        self.module = dictionaries['module']
+        self.myclass = dictionaries['class']
         for dictionary in dictionaries['at_commands']:
             self.at_commands.append(AtCommand(dictionary))
 
@@ -37,6 +39,12 @@ class AtCommandsContainer:
     
     def get_modem_model(self):
         return self.modem_model
+    
+    def get_module(self):
+        return self.module
+    
+    def get_class(self):
+        return self.myclass
 
     def set_at_commands_responses(self, serial):
         """Sends AT commands and sets the received 

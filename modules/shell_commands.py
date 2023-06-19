@@ -9,7 +9,7 @@ def kill_process(proc_name):
         # Check if the process name matches
         if proc.name() == proc_name:
             try:
-                os.system("kill %s" % (proc.pid, ))
+                os.system("sudo kill %s" % (proc.pid, ))
             except Exception as e:
                 print("Error occured when killing the process: " + str(e))
 

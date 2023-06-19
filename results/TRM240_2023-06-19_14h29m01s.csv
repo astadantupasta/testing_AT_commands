@@ -1,0 +1,146 @@
+Tested device: TRM240
+Date and time: 2023-06-19_14h29m01s
+Modem manufacturer: 
+Modem model: 
+Meaning,Command,Expected,Received,Passed
+Request Manufacturer Identification,AT+GMI=?,OK,,False
+Request TA Model Identification,AT+GMM=?,OK,,False
+Request TA Revision Identification of Software Release,AT+GMR=?,OK,,False
+Request Manufacturer Identification,AT+CGMI=?,OK,,False
+Request Model Identification,AT+CGMM=?,OK,,False
+Request TA Revision Identification of Software Release,AT+CGMR=?,OK,,False
+Request International Mobile Equipment Identity (IMEI),AT+GSN=?,OK,,False
+Request Product Serial Number Identification,AT+CGSN=?,OK,,False
+Set all Current Parameters to Manufacturer Defaults,AT&F,OK,,False
+Display Current Configuration,AT&V,OK,,False
+Store Current Parameters to User Defined Profile,AT&W,OK,,False
+Set all Current Parameters to User Defined Profile,ATZ,OK,,False
+Set Result Code Presentation Mode,ATQ,OK,,False
+TA Response Format,ATV1,OK,,False
+Set Command Echo Mode,ATE1,OK,,False
+Repeat Previous Command Line,A/,OK,,False
+Set Command Line Termination Character,ATS3=013,OK,,False
+Set Response Formatting Character,ATS4=010,OK,,False
+Set Command Line editing Character,ATS5=08,OK,,False
+Set CONNECTED Result Code Format and Monitor Call Progress,ATX4,OK,,False
+Set Phone Functionality,AT+CFUN=?,OK,,False
+Error Message Format,AT+CMEE=?,OK,,False
+Select TE Character Set,AT+CSCS=?,OK,,False
+Configure URC Indication Option,AT+QURCCFG=?,OK,,False
+Set DCD Function Mode,AT&C,OK,,False
+set DTR Function Mode,AT&D,OK,,False
+Set TE-TA Local Data Flow Control,AT+IFC=?,OK,,False
+Set TE-TA Control Character Framing,AT+ICF=?,OK,,False
+Set TE-TA Fixed Local Rate,AT+IPR=?,OK,,False
+Mobile Equipment Activity Status,AT+CPAS=?,OK,,False
+Extended Error Report,AT+CEER=?,OK,,False
+Extended Configuration Settings,AT+QCFG=?,OK,,False
+GPRS Attach Mode Configuration,"AT+QCFG=""gprsattach""[1]",OK,,False
+Network Search Mode Configuration,"AT+QCFG=""gprsattach""[0]",OK,,False
+Network Searching Sequence Configuration,"AT+QCFG=""nwscanseq""[00]",OK,,False
+Roam Service Configuration,"AT+QCFG=""roamservice""[255]",OK,,False
+Aservice Domain Configuration,"AT+QCFG=""servicedomain""[2]",OK,,False
+Band Configuration,"AT+QCFG=""band""[1]",OK,,False
+HSDPA Category Configuration,"AT+QCFG=""hsdpacat""[24]",OK,,False
+HSUPA Category Configuration,"AT+QCFG=""hsupacat""[6]",OK,,False
+RRC Release Version Configuration,"AT+QCFG=""rrc""[4]",OK,,False
+UE SGSn Release Version Configuration,"AT+QCFG=""sgsn""[2]",OK,,False
+UE MSC Release Version Configuration,"AT+QCFG=""msc""[2]",OK,,False
+Establish Multi PDNs with the Same APN,"AT+QCFG=""PDP/DuplicateChk""[0]",OK,,False
+Set TDSCDMA RSSI Range,"AT+QCFG=""TDSCSQ""[0]",OK,,False
+Request International Mobile Subscriber Identity (IMSI),AT+CIMI=?,OK,,False
+Facility Lock,AT+CLCK=?,OK,,False
+Enter PIN,AT+CPIN=?,OK,,False
+Change Password,AT+CPWD=?,OK,,False
+Generic SIM Access,AT+CSIM=?,OK,,False
+Restricted SIM Access,AT+CRSM=?,OK,,False
+Show ICCID,AT+QCCID=?,OK,,False
+Display PIN Reaminder Counter,AT+QPINC=?,OK,,False
+SIM Card Detection,AT+QSIMDET=?,OK,,False
+SIM Inserted Status Report,AT+QSIMSTAT=?,OK,,False
+Operator Selection,AT+COPS?,OK,,False
+Network Registration,AT+CREG=?,OK,,False
+Signal Quality Report,AT+CSQ=?,OK,,False
+Preferred Operator List,AT+CPOL=?,OK,,False
+Read Operator Names,AT+COPN=?,OK,,False
+Automatic Time Zone Update,AT+CTZU=?,OK,,False
+Time Zone Reporting,AT+CTZR=?,OK,,False
+Query Network Information,AT+QNWINFO=?,OK,,False
+Answer an Incoming Call,ATA,NO CARRIER,,False
+Mobile Originated Call to Dial a Number,ATD,ERROR,,False
+Disconnect Existing Connection,ATH,OK,,False
+Voice Hang up Control,AT+CVHU=?,OK,,False
+Hang up Call,AT+CHUP=?,OK,,False
+Switch from Command Mode to Data Mode,ATO0,NO CARRIER,,False
+Set Number of Rings before Automatically Answering Call,ATS0?,OK,,False
+Set Pause before Blind Dialing,ATS6?,OK,,False
+Set Number of Seconds to Wait for Connection Completion,ATS7?,OK,,False
+Set the Number of Seconds to Wait for Comma Dial Modifier,ATS8?,OK,,False
+Set Disconnect Delay after Indicating the Absence of Data Carrier,ATS10?,OK,,False
+Select Bearer Service Type,AT+CBST=?,OK,,False
+Select Type of Address,AT+CSTA=?,OK,,False
+List Current Calls of ME,AT+CLCC=?,OK,,False
+Service Reporting Control,AT+CR=?,OK,,False
+Set Cellular Result Codes for Incoming Call Indication,AT+CRC=?,OK,,False
+Select Radio Link Protocol Parameter,AT+CRLP=?,OK,,False
+Configure Emergency Call Numbers,AT+QECCNUM=?,OK,,False
+Find Phonebook Entries,AT+CPBF=?,OK,,False
+Read Phonebook Entries,AT+CPBR=?,OK,,False
+Select Phonebook Memory Storage,AT+CPBS=?,OK,,False
+Write Phonebook Entry,AT+CPBW=?,OK,,False
+Select Message Service,AT+CSMS=?,OK,,False
+Message Format,AT+CMGF=?,OK,,False
+Service center Address,AT+CSCA=?,OK,,False
+Preferred Message Storage,AT+CPMS=?,OK,,False
+Delete Message,AT+CMGD=?,OK,,False
+List Messages,AT+CMGL=?,OK,,False
+Read Message,AT+CMGR=?,OK,,False
+Send Message,AT+CMGS=?,OK,,False
+More Messages to Send,AT+CMMS=?,OK,,False
+Write Message to Memory,AT+CMGW=?,OK,,False
+Send Message from Storage,AT+CMSS=?,OK,,False
+New Message Acknowledgement to UE/TE,AT+CNMA=?,OK,,False
+SMS Event Reporting Configuration,AT+CNMI=?,OK,,False
+Select Cell Broadcast Message Types,AT+CSCB=?,OK,,False
+Show SMS Text Mode Parameters,AT+CSDH=?,OK,,False
+Set SMS Text Mode Parameters,AT+CSMP=?,OK,,False
+Send Concatenated Messages,AT+QCMGS=?,OK,,False
+Read Concatenated Messages,AT+QCMGR=?,OK,,False
+Set CDMA SMS Text Mode Parameters,AT+QCSMP=?,ERROR,,False
+Read Message,AT+QSMSR=?,ERROR,,False
+List Messages,AT+QSMSL=?,ERROR,,False
+Attachment or Detachment of PS,AT+CGATT=?,OK,,False
+Define PDP Context,AT+CGDCONT=?,OK,,False
+Quality of Service Profile (Requested),AT+CGQREQ=?,OK,,False
+Quality of Service Profile (Minimum Acceptable),AT+CGQMIN=?,OK,,False
+3G Quality of Service Profile (Requested),AT+CGEQREQ=?,OK,,False
+3G Quality of Service Profile (Minimum Acceptable),AT+CGEQMIN=?,OK,,False
+Activate or Deactivate PDP Context,AT+CGACT=?,OK,,False
+Enter Data State,AT+CGDATA=?,OK,,False
+Show PDP Address,AT+CGPADDR=?,OK,,False
+GPRS Mobile Station Class,AT+CGCLASS=?,OK,,False
+Network Registration Status,AT+CGREG=?,OK,,False
+Packet Domain Event Reporting,AT+CGEREP=?,OK,,False
+Select Service for MO SMS Messages,AT+CGSMS=?,OK,,False
+EPS Network Registration Status,AT+CEREG=?,OK,,False
+Packet Data Counter,AT+QGDCNT=?,OK,,False
+Auto Save Packet Data Counter,AT+QAUGDCNT=?,OK,,False
+Call Forwarding Number and Conditions Control,AT+CCFC=?,OK,,False
+Call Waiting Control,AT+CCWA=?,OK,,False
+Call Related Supplementary Services,AT+CHLD=?,OK,,False
+Calling Line Identification Presentation,AT+CLIP=?,OK,,False
+Calling Line Identification Restriction,AT+CLIR=?,OK,,False
+Connected Line Identification Presentation,AT+COLP=?,OK,,False
+Supplementary Service Notifications,AT+CSSN=?,OK,,False
+Unstructured Supplementary Service Data,AT+CUSD=?,OK,,False
+Loud Speaker Volume Level,AT+CLVL=?,OK,,False
+Mute Control,AT+CMUT=?,OK,,False
+Enable Audio Loop Test,AT+QAUDLOOP=?,OK,,False
+DTMF and Tone Generation,AT+VTS=?,OK,,False
+Set Tone Duration,AT+VTD=?,OK,,False
+Set Audio Mode,AT+QAUDMOD=?,OK,,False
+Digital Audio Interface Configure,AT+QDAI=?,OK,,False
+Power off,AT+QPOWD=?,OK,,False
+Clock,AT+CCLK=?,OK,,False
+Battery Charge,AT+CBC=?,OK,,False
+Configure Whether or Not to Enter into Sleep Mode,AT+QSCLK=?,OK,,False

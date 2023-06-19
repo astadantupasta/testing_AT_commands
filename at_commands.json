@@ -1,5 +1,7 @@
 {
     "TRM240": {
+        "module": "serial_communication",
+        "class": "SerialCommunication",
         "at_commands" : [
             {"command": "AT+GMI=?", "expected_response": "OK", "meaning": "Request Manufacturer Identification"},
             {"command": "AT+GMM=?", "expected_response": "OK", "meaning": "Request TA Model Identification"},
@@ -145,9 +147,63 @@
         ]
     },
 
-    "RUT956": {
+    "RUTX11": {
+        "module": "ssh_connection",
+        "class": "SshConnection",
         "at_commands" : [
-
+            {"command": "AT+GMI=?", "expected_response": "OK", "meaning": "Request Manufacturer Identification"},
+            {"command": "AT+GMM=?", "expected_response": "OK", "meaning": "Request TA Model Identification"},
+            {"command": "AT+GMR=?", "expected_response": "OK", "meaning": "Request TA Revision Identification of Software Release"},
+            {"command": "AT+CGMI=?", "expected_response": "OK", "meaning": "Request Manufacturer Identification"},
+            {"command": "AT+CGMM=?", "expected_response": "OK", "meaning": "Request Model Identification"},
+            {"command": "AT+CGMR=?", "expected_response": "OK", "meaning": "Request TA Revision Identification of Software Release"},
+            {"command": "AT+GSN=?", "expected_response": "OK", "meaning": "Request International Mobile Equipment Identity (IMEI)"},
+            {"command": "AT+CGSN=?", "expected_response": "OK", "meaning": "Request Product Serial Number Identification"},
+            {"command": "ATZ", "expected_response": "OK", "meaning": "Set all Current Parameters to User Defined Profile"},
+            {"command": "ATV1", "expected_response": "OK", "meaning": "TA Response Format"},
+            {"command": "ATE1", "expected_response": "OK", "meaning": "Set Command Echo Mode"},
+            {"command": "AT+CEER=?", "expected_response": "OK", "meaning": "Extended Error Report"},
+            {"command": "AT+QCFG=\"gprsattach\"[1]", "expected_response": "ERROR", "meaning": "GPRS Attach Mode Configuration"},
+            {"command": "AT+QCFG=\"gprsattach\"[0]", "expected_response": "ERROR", "meaning": "Network Search Mode Configuration"},
+            {"command": "AT+QCFG=\"nwscanseq\"[00]", "expected_response": "ERROR", "meaning": "Network Searching Sequence Configuration"},
+            {"command": "AT+QCFG=\"roamservice\"[255]", "expected_response": "ERROR", "meaning": "Roam Service Configuration"},
+            {"command": "AT+QCFG=\"servicedomain\"[2]", "expected_response": "ERROR", "meaning": "Aservice Domain Configuration"},
+            {"command": "AT+QCFG=\"band\"[1]", "expected_response": "ERROR", "meaning": "Band Configuration"},
+            {"command": "AT+QCFG=\"hsdpacat\"[24]", "expected_response":"ERROR", "meaning":"HSDPA Category Configuration"},
+            {"command": "AT+QCFG=\"hsupacat\"[6]", "expected_response": "ERROR", "meaning": "HSUPA Category Configuration"},
+            {"command": "AT+QCFG=\"rrc\"[4]", "expected_response": "ERROR", "meaning": "RRC Release Version Configuration"},
+            {"command": "AT+QCFG=\"sgsn\"[2]", "expected_response": "ERROR", "meaning": "UE SGSn Release Version Configuration"},
+            {"command": "AT+QCFG=\"msc\"[2]", "expected_response": "ERROR", "meaning": "UE MSC Release Version Configuration"},
+            {"command": "AT+QCFG=\"PDP/DuplicateChk\"[0]", "expected_response": "ERROR", "meaning": "Establish Multi PDNs with the Same APN"},
+            {"command": "AT+QCFG=\"TDSCSQ\"[0]", "expected_response": "ERROR", "meaning": "Set TDSCDMA RSSI Range"},
+            {"command": "AT+CIMI=?", "expected_response": "OK", "meaning": "Request International Mobile Subscriber Identity (IMSI)"},
+            {"command": "AT+CPIN=?", "expected_response": "OK", "meaning": "Enter PIN"},
+            {"command": "AT+CSIM=?", "expected_response": "OK", "meaning": "Generic SIM Access"},
+            {"command": "AT+CRSM=?", "expected_response": "OK", "meaning": "Restricted SIM Access"},
+            {"command": "AT+QCCID=?", "expected_response": "OK", "meaning": "Show ICCID"},
+            {"command": "AT+COPN=?", "expected_response": "OK", "meaning": "Read Operator Names"},
+            {"command": "AT+QNWINFO=?", "expected_response": "OK", "meaning": "Query Network Information"},
+            {"command": "ATA", "expected_response": "ERROR", "meaning": "Answer an Incoming Call"},
+            {"command": "ATD", "expected_response": "ERROR", "meaning": "Mobile Originated Call to Dial a Number"},
+            {"command": "ATH", "expected_response": "OK", "meaning": "Disconnect Existing Connection"},
+            {"command": "AT+CHUP=?", "expected_response": "OK", "meaning": "Hang up Call"},
+            {"command": "ATO0", "expected_response": "ERROR", "meaning": "Switch from Command Mode to Data Mode"},
+            {"command": "ATS6?", "expected_response": "ERROR", "meaning": "Set Pause before Blind Dialing"},
+            {"command": "ATS7?", "expected_response": "ERROR", "meaning": "Set Number of Seconds to Wait for Connection Completion"},
+            {"command": "ATS8?", "expected_response": "ERROR", "meaning": "Set the Number of Seconds to Wait for Comma Dial Modifier"},
+            {"command": "ATS10?", "expected_response": "ERROR", "meaning": "Set Disconnect Delay after Indicating the Absence of Data Carrier"},
+            {"command": "AT+CLCC=?", "expected_response": "OK", "meaning": "List Current Calls of ME"},
+            {"command": "AT+CSCA=?", "expected_response": "OK", "meaning": "Service center Address"},
+            {"command": "AT+CMGR=?", "expected_response": "OK", "meaning": "Read Message"},
+            {"command": "AT+CMGS=?", "expected_response": "OK", "meaning": "Send Message"},
+            {"command": "AT+CMGW=?", "expected_response": "OK", "meaning": "Write Message to Memory"},
+            {"command": "AT+CMSS=?", "expected_response": "OK", "meaning": "Send Message from Storage"},
+            {"command": "AT+CSMP=?", "expected_response": "OK", "meaning": "Set SMS Text Mode Parameters"},
+            {"command": "AT+QCMGS=?", "expected_response": "OK", "meaning": "Send Concatenated Messages"},
+            {"command": "AT+QCMGR=?", "expected_response": "OK", "meaning": "Read Concatenated Messages"},
+            {"command": "AT+QCSMP=?", "expected_response": "ERROR", "meaning": "Set CDMA SMS Text Mode Parameters"},
+            {"command": "AT+QSMSR=?", "expected_response": "OK", "meaning": "Read Message"},
+            {"command": "AT+CCLK=?", "expected_response": "OK", "meaning": "Clock"}
         ]
     }
 }

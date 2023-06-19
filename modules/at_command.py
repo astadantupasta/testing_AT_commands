@@ -46,5 +46,5 @@ class AtCommand:
     
     def set_test_is_passed(self):
         self.test_is_passed = (
-            self.expected_response == self.received_response
+            self.get_expected_response() == self.get_received_response()
         )
