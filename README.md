@@ -13,10 +13,10 @@ pip3 install *package_name*
 command.
 
 Versions used:
-python-abc 0.2.0
-paramiko 2.9.3
-prettytable 3.7.0
-psutil 5.9.5
+python-abc 0.2.0,
+paramiko 2.9.3,
+prettytable 3.7.0,
+psutil 5.9.5.
 
 ## Configuration file
 All information about the tested device and AT commands is stored in a JSON configuration file `at_commands.json`.
