@@ -1,6 +1,8 @@
 from modules.ICommunication import ICommunication
 import paramiko
 import time
+import psutil
+import os, signal
 
 class SshConnection(ICommunication):
     def __init__(self, hostname, username, password):
@@ -20,7 +22,8 @@ class SshConnection(ICommunication):
         self.username = username
         self.password = password
 
-        self.__initiate()        
+        self.__initiate()
+        self.disable_process()        
 
     def __initiate(self, waiting_seconds=5, repetition_times=10):
         """Connect to the device using SSH protocol.
@@ -50,6 +53,29 @@ class SshConnection(ICommunication):
                 print("Make sure you indicated the correct device name and arguments.")
                 print("reconnecting...")
                 time.sleep(waiting_seconds)
+            
+            if i >= (repetition_times-1):
+                print("Connection was unsuccessful.")
+                print("Make sure the device is connected and you indicated the correct device name and arguments.")
+                exit()
+        
+
+    def __kill_process(self, proc_name):
+        """Kill process, indicates as a proc_name.
+        :proc_name: name of the process to kill
+        """
+        for proc in psutil.process_iter():
+            # Check if the process name matches
+            if proc.name() == proc_name:
+                try:
+                    os.system(" kill %s" % (proc.pid, ))
+                    ssh_stdin, response, ssh_stderr = self.sshClient.exec_command("kill %s" % (proc.pid, ))
+                    ssh_stdin.close()
+                except Exception as e:
+                    print("Error occured when killing the process: " + str(e))
+
+    def disable_process(self):
+        self.__kill_process("gsmd")
 
     def send_command(self, command, repetition_times=10):
         """Executes command on the device. In case of connection error, 
@@ -84,11 +110,12 @@ class SshConnection(ICommunication):
             except:
                 print("Executing ssh command failed. Command: " + command)
                 print("reexecuting...")
-                self.__initiate(self.hostname, self.username, self.password)
+                self.__initiate()
             count += 1
 
             if (count > repetition_times):
                 return response
+            
         return response.read().decode('ascii').strip()
 
     def open_port(self, repetition_times=20, waiting_seconds=5):

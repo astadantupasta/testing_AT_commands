@@ -2,6 +2,8 @@ from modules import shell_commands
 from modules.ICommunication import ICommunication
 import serial
 import time
+import psutil
+import os, signal
 
 class SerialCommunication(ICommunication):
     def __init__(self, port, possible_port, baudrate=9600, timeout=.1):
@@ -30,7 +32,12 @@ class SerialCommunication(ICommunication):
         number_of_attempts = self.__initiate(port, repetition_times)
 
         if number_of_attempts > (repetition_times-2):
-            self.__initiate(possible_port, repetition_times)
+            number_of_attempts = self.__initiate(possible_port, repetition_times)
+
+            if number_of_attempts >= (repetition_times-1):
+                print("Connection was unsuccessful.")
+                print("Make sure the device is connected and you indicated the correct device name and arguments.")
+                exit()
                     
 
     def __initiate(self, port, repetition_times):
