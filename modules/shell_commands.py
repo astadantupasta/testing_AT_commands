@@ -13,8 +13,9 @@ def kill_process(proc_name):
             except Exception as e:
                 print("Error occured when killing the process: " + str(e))
 
-def kill_modem_manager():
+def disable_process():
     kill_process("ModemManager")
+    kill_process("gsmd")
 
 def provide_permission(file_path, permission):
     """Provides permission for the indicated file.

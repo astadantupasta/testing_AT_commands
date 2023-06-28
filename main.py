@@ -15,7 +15,7 @@ def main(args):
     flag_device_name, first_arg, second_arg, third_arg = flags_handling.get_communication_arguments(args)
 
     # Prepare for the test
-    shell_commands.kill_modem_manager()
+    shell_commands.disable_process()
 
     # Read data from a file and append to a list of AtCommands objects
     file_data = read_json.read_data_from_json("at_commands.json", flag_device_name)

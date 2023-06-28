@@ -1,0 +1,58 @@
+Tested device: RUTX11
+Date and time: 2023-06-28_14h25m06s
+Modem manufacturer: Quectel
+Modem model: EG06
+Meaning,Command,Expected,Received,Passed
+Request Manufacturer Identification,AT+GMI=?,OK,OK,True
+Request TA Model Identification,AT+GMM=?,OK,OK,True
+Request TA Revision Identification of Software Release,AT+GMR=?,OK,OK,True
+Request Manufacturer Identification,AT+CGMI=?,OK,OK,True
+Request Model Identification,AT+CGMM=?,OK,OK,True
+Request TA Revision Identification of Software Release,AT+CGMR=?,OK,OK,True
+Request International Mobile Equipment Identity (IMEI),AT+GSN=?,OK,OK,True
+Request Product Serial Number Identification,AT+CGSN=?,OK,OK,True
+Set all Current Parameters to User Defined Profile,ATZ,OK,OK,True
+TA Response Format,ATV1,OK,OK,True
+Set Command Echo Mode,ATE1,OK,OK,True
+Extended Error Report,AT+CEER=?,OK,OK,True
+GPRS Attach Mode Configuration,"AT+QCFG=""gprsattach""[1]",ERROR,ERROR,True
+Network Search Mode Configuration,"AT+QCFG=""gprsattach""[0]",ERROR,ERROR,True
+Network Searching Sequence Configuration,"AT+QCFG=""nwscanseq""[00]",ERROR,ERROR,True
+Roam Service Configuration,"AT+QCFG=""roamservice""[255]",ERROR,ERROR,True
+Aservice Domain Configuration,"AT+QCFG=""servicedomain""[2]",ERROR,ERROR,True
+Band Configuration,"AT+QCFG=""band""[1]",ERROR,ERROR,True
+HSDPA Category Configuration,"AT+QCFG=""hsdpacat""[24]",ERROR,ERROR,True
+HSUPA Category Configuration,"AT+QCFG=""hsupacat""[6]",ERROR,ERROR,True
+RRC Release Version Configuration,"AT+QCFG=""rrc""[4]",ERROR,ERROR,True
+UE SGSn Release Version Configuration,"AT+QCFG=""sgsn""[2]",ERROR,ERROR,True
+UE MSC Release Version Configuration,"AT+QCFG=""msc""[2]",ERROR,ERROR,True
+Establish Multi PDNs with the Same APN,"AT+QCFG=""PDP/DuplicateChk""[0]",ERROR,ERROR,True
+Set TDSCDMA RSSI Range,"AT+QCFG=""TDSCSQ""[0]",ERROR,ERROR,True
+Request International Mobile Subscriber Identity (IMSI),AT+CIMI=?,OK,OK,True
+Enter PIN,AT+CPIN=?,OK,OK,True
+Generic SIM Access,AT+CSIM=?,OK,OK,True
+Restricted SIM Access,AT+CRSM=?,OK,OK,True
+Show ICCID,AT+QCCID=?,OK,OK,True
+Read Operator Names,AT+COPN=?,OK,OK,True
+Query Network Information,AT+QNWINFO=?,OK,OK,True
+Answer an Incoming Call,ATA,ERROR,ERROR,True
+Mobile Originated Call to Dial a Number,ATD,ERROR,ERROR,True
+Disconnect Existing Connection,ATH,OK,OK,True
+Hang up Call,AT+CHUP=?,OK,OK,True
+Switch from Command Mode to Data Mode,ATO0,ERROR,ERROR,True
+Set Pause before Blind Dialing,ATS6?,ERROR,ERROR,True
+Set Number of Seconds to Wait for Connection Completion,ATS7?,ERROR,ERROR,True
+Set the Number of Seconds to Wait for Comma Dial Modifier,ATS8?,ERROR,ERROR,True
+Set Disconnect Delay after Indicating the Absence of Data Carrier,ATS10?,ERROR,ERROR,True
+List Current Calls of ME,AT+CLCC=?,OK,OK,True
+Service center Address,AT+CSCA=?,OK,OK,True
+Read Message,AT+CMGR=?,OK,OK,True
+Send Message,AT+CMGS=?,OK,OK,True
+Write Message to Memory,AT+CMGW=?,OK,OK,True
+Send Message from Storage,AT+CMSS=?,OK,OK,True
+Set SMS Text Mode Parameters,AT+CSMP=?,OK,OK,True
+Send Concatenated Messages,AT+QCMGS=?,OK,OK,True
+Read Concatenated Messages,AT+QCMGR=?,OK,OK,True
+Set CDMA SMS Text Mode Parameters,AT+QCSMP=?,ERROR,ERROR,True
+Read Message,AT+QSMSR=?,OK,OK,True
+Clock,AT+CCLK=?,OK,OK,True

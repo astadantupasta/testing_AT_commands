@@ -36,8 +36,8 @@ Example of the configuration file:
 1. Extract the zip file of this project, open it in Visual Studio Code.
 2. Make sure that the configurations for connection are written correctly in the configuration file `at_commands.json`: locate the name of the router you are about to test, change *module*, *class* to the correct ones (either *ssh_connection* and *SshConnection*, or *serial_communication* and *SerialCommunication*).
 3. Execute the proper command. Help for command can be seen when executing `python3 main.py -h`.
-When SSH protocol is used, use command:
+When serial communication is used, use command:
 `python3 main.py -n NAME -p PORT -pp POSSIBLEPORT [-b BAUDRATE]`, where *name* is the name of the device (e.g., `RYTX11`, `TRM240`), *port* is a port used for connection and *possible_port* is a port that may be true after connection disruption.
 
-When serial communication is used, use command:
+When SSH protocol is used, use command:
 `python3 main.py -n NAME -i IP -u USERNAME -pw PASSWORD`, where *name* is the name of the device, *ip* represents the hostname, *username* and *password* represent login information.
