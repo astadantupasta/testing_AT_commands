@@ -7,6 +7,7 @@ from modules import print_to_terminal
 from modules import shell_commands
 from modules.at_commands_container import AtCommandsContainer
 from modules.serial_communication import SerialCommunication
+from os import system
 import importlib
 
 def main(args):
@@ -31,7 +32,8 @@ def main(args):
     comm.open_port()
 
     # Send AT commands to the device
-    at_commands.set_at_commands_responses(comm)
+    system('clear')
+    at_commands.set_at_commands_responses(comm, flag_device_name)
     at_commands.set_modem_manufacturer(comm)
     at_commands.set_modem_model(comm)
     comm.close_port()
@@ -39,8 +41,7 @@ def main(args):
     # Check if the tests were passed
     at_commands.check_if_tests_are_passed()
 
-    # Print results to terminal and to the CSV file
-    print_to_terminal.print_to_terminal(flag_device_name, at_commands)
+    # Print results  to the CSV file
     print_to_file.print_to_csv(flag_device_name, at_commands)
 
 if __name__ == "__main__":

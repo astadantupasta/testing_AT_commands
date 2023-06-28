@@ -1,4 +1,5 @@
 from prettytable import PrettyTable
+from os import system, name
 
 def print_data_to_table(at_commands):
     """Prints AtCommand container to table.
@@ -37,17 +38,34 @@ def print_to_terminal(device_name, at_commands):
     print("End of the test!")
     print("\n\n")
 
-def print_one_command(at_command):
-    """Prints to terminal results of one AT command.
+def print_one_command(at_command, device_name, at_commands):
+    """Prints to terminal results of one AT command and
+    summary (number of passed tests in green; not passed -red)
+
     :at_command: an object of AtCommand
+    :device_name: name of the device
+    :at_commands: AtCommandsContainer object
     """
     CEND = '\033[0m'
+    CRED = '\033[91m'
+    CGREEN = '\033[92m'
 
-    if at_command.get_test_is_passed(): color = '\033[92m'
-    else: color = '\033[91m'
+    test_is_passed = ''
+    if at_command.get_test_is_passed(): 
+        color = '\033[92m' 
+        test_is_passed = 'Passed'
+    else: 
+        color = '\033[91m'
+        test_is_passed = 'Failed'
 
-    print("Command: " + at_command.get_command())
-    print("Response: " + at_command.get_received_response())
-    print("Expected: " + at_command.get_expected_response())
-    print("Passed the test: " + color + str(at_command.get_test_is_passed()) + CEND)
-    print()
+    print("Command: " + at_command.get_command() + ' '*10)
+    print("Response: " + at_command.get_received_response() + ' '*10)
+    print("Expected: " + at_command.get_expected_response() + ' '*12)
+    print("Passed the test: " + color + test_is_passed + CEND + ' '*12)
+    print(' '*20)
+    print("Device name: " + device_name + ' '*10)
+    print("Passed tests: " + CGREEN + str(at_commands.count_passed_tests()) + CEND + ' '*10)
+    print("Failed tests: " + CRED + str(at_commands.count_not_passed_tests()) + CEND + ' '*10)
+    print("Num of configurations: " + str(at_commands.get_count()) + ' '*10)
+    print('\033[10A', '\x1b[2K')
+

@@ -46,17 +46,18 @@ class AtCommandsContainer:
     def get_class(self):
         return self.myclass
 
-    def set_at_commands_responses(self, serial):
+    def set_at_commands_responses(self, serial, device_name):
         """Sends AT commands and sets the received 
         responses to AtCommand.received_response variable.
         
         :serial: SerialCommunication object
+        :device_name: name of the device
         """
         for at_command in self.at_commands:
             response = serial.send_command_when_expect(at_command.get_command(), at_command.get_expected_response())
             at_command.set_received_response(response)
 
-            print_to_terminal.print_one_command(at_command)
+            print_to_terminal.print_one_command(at_command, device_name, self)
 
     def check_if_tests_are_passed(self):
         """Checks if tests are passed (expected and received responses
