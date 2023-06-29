@@ -58,14 +58,19 @@ def print_one_command(at_command, device_name, at_commands):
         color = '\033[91m'
         test_is_passed = 'Failed'
 
-    print("Command: " + at_command.get_command() + ' '*10)
-    print("Response: " + at_command.get_received_response() + ' '*10)
-    print("Expected: " + at_command.get_expected_response() + ' '*12)
-    print("Passed the test: " + color + test_is_passed + CEND + ' '*12)
-    print(' '*20)
-    print("Device name: " + device_name + ' '*10)
-    print("Passed tests: " + CGREEN + str(at_commands.count_passed_tests()) + CEND + ' '*10)
-    print("Failed tests: " + CRED + str(at_commands.count_not_passed_tests()) + CEND + ' '*10)
-    print("Num of configurations: " + str(at_commands.get_count()) + ' '*10)
-    print('\033[10A', '\x1b[2K')
+    print("Command: " + at_command.get_command() + ' '*100)
+    print("Response: " + at_command.get_received_response() + ' '*100)
+    print("Expected: " + at_command.get_expected_response() + ' '*100)
+    print("Passed the test: " + color + test_is_passed + CEND + ' '*100)
+    print(' '*100)
+    print("Device name: " + device_name + ' '*100)
+    print("Passed tests: " + CGREEN + str(at_commands.count_passed_tests()) + CEND + ' '*100)
+    print("Failed tests: " + CRED + str(at_commands.count_not_passed_tests()) + CEND + ' '*100)
+    print("Num of configurations: " + str(at_commands.get_count()) + ' '*100)
+    if at_command.get_command() != at_commands.get_last_command().get_command():
+        print('\033[10A', '\x1b[2K')
+    else:
+        print("End of the test!")
+        print("-"*10)
+        print()
 

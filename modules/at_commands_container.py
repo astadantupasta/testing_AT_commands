@@ -23,16 +23,33 @@ class AtCommandsContainer:
         """Sends AT command and sets the received response.
         :serial: SerialCommunication object
         """
-        self.modem_manufacturer = serial.send_command(command="AT+GMI")
+        try:
+            self.modem_manufacturer = serial.send_command(command="AT+GMI")
+            if self.modem_manufacturer == "": 
+                print("Device does not have a modem.")
+                exit()
+        except:
+            print("Device does not have a modem or connection error occured.")
+            exit()
     
     def set_modem_model(self, serial):
         """Sends AT command and sets the received response.
         :serial: SerialCommunication objetc
         """
-        self.modem_model = serial.send_command(command="AT+GMM")
+        try:
+            self.modem_model = serial.send_command(command="AT+GMM")
+            if self.modem_manufacturer == "": 
+                print("Device does not have a modem.")
+                exit()
+        except:
+            print("Device does not have a modem or connection error occurred.")
+            exit()
 
     def get_count(self):
         return len(self.at_commands)
+    
+    def get_last_command(self):
+        return self.at_commands[-1]
     
     def get_modem_manufacturer(self):
         return self.modem_manufacturer

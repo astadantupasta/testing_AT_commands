@@ -15,7 +15,6 @@ def kill_process(proc_name):
 
 def disable_process():
     kill_process("ModemManager")
-    kill_process("gsmd")
 
 def provide_permission(file_path, permission):
     """Provides permission for the indicated file.

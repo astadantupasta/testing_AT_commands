@@ -125,20 +125,20 @@ class SshConnection(ICommunication):
         if self.sshClient.get_transport() is not None:
             self.sshClient.close()
 
-    def check_connected_router_name(self, router_name):
-        """Checks if products's name is as indicated in variable 'router_name'.
-        :router_name: name of the router
-        """
-        ssh_stdout = self.send_command("cat /etc/config/system | grep routername | awk '{print $NF}' | sed \"s/'//g\"")
-        if ssh_stdout != router_name:
-            raise Exception("Connected product is not as indicated in variable 'router_name'")
+    # def check_connected_router_name(self, router_name):
+    #     """Checks if products's name is as indicated in variable 'router_name'.
+    #     :router_name: name of the router
+    #     """
+    #     ssh_stdout = self.send_command("cat /etc/config/system | grep routername | awk '{print $NF}' | sed \"s/'//g\"")
+    #     if ssh_stdout != router_name:
+    #         raise Exception("Connected product is not as indicated in variable 'router_name'")
 
-    def check_modem(self):
-        """Checks if product has a modem."""
-        ssh_stdout = self.send_command("gsmctl -a")
-        if ssh_stdout == "":
-            raise Exception("The connected product does not have a modem.")
+    # def check_modem(self):
+    #     """Checks if product has a modem."""
+    #     ssh_stdout = self.send_command("gsmctl -a")
+    #     if ssh_stdout == "":
+    #         raise Exception("The connected product does not have a modem.")
 
-    def get_device_hostname(self):
-        """Finds device hostname."""
-        return self.send_command("cat /proc/sys/kernel/hostname")
+    # def get_device_hostname(self):
+    #     """Finds device hostname."""
+    #     return self.send_command("cat /proc/sys/kernel/hostname")

@@ -32,10 +32,10 @@ def main(args):
     comm.open_port()
 
     # Send AT commands to the device
-    system('clear')
-    at_commands.set_at_commands_responses(comm, flag_device_name)
     at_commands.set_modem_manufacturer(comm)
     at_commands.set_modem_model(comm)
+    at_commands.set_at_commands_responses(comm, flag_device_name)
+    
     comm.close_port()
 
     # Check if the tests were passed
@@ -47,7 +47,8 @@ def main(args):
 if __name__ == "__main__":
     flags = flags_handling.get_flags()
     flags_handling.test_flags(flags)
-    main(flags)
+    while True:
+        main(flags)
 
 
     
